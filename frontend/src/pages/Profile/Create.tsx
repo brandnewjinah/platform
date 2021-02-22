@@ -2,54 +2,56 @@ import React from "react";
 
 //import libraries
 import styled from "styled-components";
-import Select from "react-select";
 
 //import components
 import FullLayout from "../../components/FullLayout";
 import { FilledButton } from "../../components/Button";
 import { Input } from "../../components/Input";
+import ReactSelect from "../../components/ReactSelect";
+
+//import styles and assets
+import { colors, sizes } from "../../components/StyleVariables";
 
 //local data
 import { profileOptions } from "../../data/profileOptions";
 
 const Create = () => {
-  console.log(profileOptions);
   return (
     <FullLayout>
       <Wrapper>
         <Header>
-          <h1>Welcome</h1>
+          <h1>Tell us about yourself</h1>
           <Article>
-            <p>Tell us a little bit about you.</p>
+            <p>Tell us a little bit about you to get started.</p>
           </Article>
         </Header>
         <Main>
           <form>
             <Section>
-              <Input label="Your title" />
-              <Input label="Experience level" />
-              <SelectWrapper>
-                <p>Your industry</p>
-                <Select
-                  defaultValue={[profileOptions[2], profileOptions[3]]}
-                  isMulti
-                  name="colors"
-                  options={profileOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                />
-              </SelectWrapper>
-              <SelectWrapper>
-                <p>Your interests</p>
-                <Select
-                  defaultValue={[profileOptions[2], profileOptions[3]]}
-                  isMulti
-                  name="colors"
-                  options={profileOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                />
-              </SelectWrapper>
+              <Input
+                name="Your title"
+                label="Your title"
+                placeholder="e.g. Product Designer"
+                shape="underline"
+                margin={sizes.xs}
+              />
+              <Input
+                name="Experience level"
+                label="Experience level"
+                placeholder="e.g. 5 years"
+                shape="underline"
+                margin={sizes.xs}
+              />
+              <ReactSelect
+                label="Your Industry"
+                data={profileOptions}
+                margin={sizes.s}
+              />
+              <ReactSelect
+                label="Your Interests"
+                data={profileOptions}
+                margin={sizes.s}
+              />
             </Section>
             <FilledButton label="Start" color="blue" shape="pill" fullwidth />
           </form>
@@ -68,24 +70,21 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.header`
+  text-align: center;
   margin-bottom: 1em;
 `;
 
 const Article = styled.article`
-  font-size: 1rem;
-  margin: 1em 0;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: ${colors.gray};
+  margin: 0.5em 0;
 `;
 
 const Main = styled.main``;
 
 const Section = styled.section`
   margin: 2em 0;
-`;
-
-const SelectWrapper = styled.div`
-  p {
-    font-size: 0.925rem;
-  }
 `;
 
 export default Create;

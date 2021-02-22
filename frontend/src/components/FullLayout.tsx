@@ -19,14 +19,14 @@ const Layout: FC<Props> = ({ children }) => {
 };
 
 const Wrapper = styled.div`
-  background-color: #f2f4fa;
+  /* background-color: #f2f4fa; */
   min-height: 100vh;
 `;
 
 const Container = styled.div`
   /* background-color: #d8dff1; */
   width: 100%;
-  padding: 1em;
+  padding: 1.875em 1.5em;
 
   @media (min-width: 640px) {
   }

@@ -25,7 +25,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     a {
+        text-decoration: none;
         cursor: pointer;
+
+        &:visited {
+            text-decoration: none;  
+        }
     }
 
     button {
@@ -39,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
     }
     
     h1 {
-        font-size: 1.875rem
+        font-size: 1.375rem
     }
 
     @media (min-width: 640px) {

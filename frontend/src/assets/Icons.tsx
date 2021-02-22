@@ -208,6 +208,24 @@ export const Google: FC<Props> = ({
   );
 };
 
+export const Menu: FC<Props> = ({ width, height, stroke, color, fill }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill={fill ? fill : "none"}
+      stroke={color}
+      strokeWidth={stroke}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 12h18M3 6h18M3 18h18" />
+    </svg>
+  );
+};
+
 export const Minus: FC<Props> = ({ width, height, stroke, color, fill }) => {
   return (
     <svg
@@ -281,4 +299,23 @@ export const Trash: FC<Props> = ({ width, height, stroke, color, fill }) => {
   );
 };
 
-//width="20" height="20" color="#000" stroke="2"
+export const User: FC<Props> = ({ width, height, stroke, color, fill }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill={fill ? fill : "none"}
+      stroke={color}
+      strokeWidth={stroke}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+      <circle cx={12} cy={7} r={4} />
+    </svg>
+  );
+};
+
+//width={20} height={20} color="#000" stroke={2}

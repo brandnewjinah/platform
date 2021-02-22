@@ -3,6 +3,7 @@ import React, { ChangeEvent, FC, useState } from "react";
 //import styles and assets
 import styled from "styled-components";
 import { Eye, EyeOff } from "../assets/Icons";
+import { colors } from "./StyleVariables";
 
 interface Props {
   label: string;
@@ -10,13 +11,20 @@ interface Props {
   required?: boolean;
   error?: string;
   type?: "text" | "password";
-  name?: string;
+  name: string;
   prefix?: string;
   placeholder?: string;
   id?: any;
   small?: boolean;
+  shape?: "underline" | "pill" | "rounded";
+  margin?: string;
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
+
+type StyleProps = {
+  shape?: string | undefined;
+  margin?: string | undefined;
+};
 
 export const Input: FC<Props> = ({
   label,
@@ -26,13 +34,16 @@ export const Input: FC<Props> = ({
   name,
   error,
   small,
+  shape,
+  margin,
+  placeholder,
   handleChange,
 }) => {
   const [isPassword, setIsPassword] = useState(true);
 
   return (
-    <InputContainer>
-      <label htmlFor={name}>
+    <InputContainer margin={margin}>
+      <label htmlFor={name} aria-hidden="true">
         {label}
         {required && " *"}
       </label>
@@ -45,7 +56,9 @@ export const Input: FC<Props> = ({
           )}
         </div>
       )}
-      <input
+      <InputTag
+        placeholder={placeholder}
+        shape={shape}
         id={name}
         className={`${small && "small"} ${error && "error"}`}
         type={type === "password" && isPassword ? "password" : "text"}
@@ -102,26 +115,13 @@ export const FloatingInput: FC<Props> = ({
   );
 };
 
-const InputContainer = styled.div`
+const InputContainer = styled.div<StyleProps>`
   position: relative;
-
-  input {
-    width: 100%;
-    font-size: 1.05rem;
-    height: 3.25rem;
-    border-radius: 0.35rem;
-    border: 1px solid #d2d2d7;
-    padding: 0 2.5rem 0 0.875rem;
-    appearance: none;
-
-    &:focus {
-      box-shadow: 0 0 0 4px rgba(0, 125, 250, 0.6);
-      outline: none;
-    }
-  }
+  margin: ${(props) => `${props.margin} 0`};
 
   label {
     font-size: 0.925rem;
+    color: ${colors.gray};
   }
 
   .error {
@@ -145,6 +145,35 @@ const InputContainer = styled.div`
     font-size: 0.7875rem;
     color: red;
     margin: 0.25em 0;
+  }
+`;
+
+const InputTag = styled.input<StyleProps>`
+  width: 100%;
+  font-size: 1.05rem;
+  height: 3.25rem;
+  border-radius: ${(props) =>
+    props.shape === "underline" ? "none" : "0.35rem"};
+  border-top: ${(props) =>
+    props.shape === "underline" ? "none" : `1px solid #d2d2d7`};
+  border-left: ${(props) =>
+    props.shape === "underline" ? "none" : `1px solid #d2d2d7`};
+  border-right: ${(props) =>
+    props.shape === "underline" ? "none" : `1px solid #d2d2d7`};
+  border-bottom: 1px solid #d2d2d7;
+  padding: 0 2.5rem 0 0.875rem;
+  appearance: none;
+
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(0, 125, 250, 0.6);
+    border-radius: 0.35rem;
+    outline: none;
+  }
+
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    font-size: 0.925rem;
+    color: ${colors.lightergray};
   }
 `;
 

@@ -156,7 +156,7 @@ const OutlinedContainer = styled.button<Props>`
   font-weight: 600;
   width: ${(props) => (props.fullwidth ? "100%" : null)};
   background-color: transparent;
-  border: ${(props) => `2px solid ${props.color}`};
+  border: ${(props) => `1px solid ${props.color}`};
   border-radius: ${(props) =>
     props.shape === "pill" ? "2em" : props.shape === "rounded" ? ".5em" : 0};
   color: ${(props) => props.color};
